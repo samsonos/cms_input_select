@@ -1,1 +1,2 @@
+<input type="hidden" class="__hidden" value="<?php v('field_value') ?>">
 <select class="__input" style="display:none" name="v"><?php v('field_options')?></select>
