@@ -8,4 +8,5 @@ SamsonCMS_InputSelect = function(fields)
 	});
 };
 
-s('.__inputfield.__select').pageInit(SamsonCMS_InputSelect);
+// Bind input
+SamsonCMS_Input.bind(SamsonCMS_InputSelect, '.__inputfield.__select');
