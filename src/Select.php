@@ -21,15 +21,15 @@ class Select extends Field
     /** Select options */
     protected $options = '';
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function create($dbObject, $type, $param = null, $className = __CLASS__)
-    {
-        /** @var self $selectField */
-        $selectField = parent::create($dbObject, $type, $param, $className);
-        return $selectField->optionsFromString();
-    }
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public static function create($dbObject, $type, $param = null, $className = __CLASS__)
+//    {
+//        /** @var self $selectField */
+//        $selectField = parent::create($dbObject, $type, $param, $className);
+//        return $selectField->optionsFromString();
+//    }
 
     /**
      * Parse string into select options
@@ -37,9 +37,9 @@ class Select extends Field
      * @param string $string 			Input string
      * @param string $groupSeparator 	Separator string for groups
      * @param string $viewSeparator	Separator string for view/value
-     * @return \samson\cms\input\Select Chaining
+     * @return Select Chaining
      */
-    public function optionsFromString($string = '', $groupSeparator = ',', $viewSeparator = ':')
+    public function build($string = '', $groupSeparator = ',', $viewSeparator = ':')
     {
         // Clear options data
         $this->options = array();

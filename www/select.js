@@ -2,7 +2,7 @@
 SamsonCMS_InputSelect = function(fields)
 {
 	// Create Select field instance with save handler
-	SamsonCMS_InputField(fields, function(responce, field, sp)
+	SamsonCMS_InputText(fields, function(responce, field, sp)
 	{
 		sp.html(s('option:selected',field).html());
 	});
