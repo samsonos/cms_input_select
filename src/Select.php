@@ -9,11 +9,11 @@ use samsoncms\input\Field;
  */
 class Select extends Field
 {
-    /** @var  int Field type identifier */
-    protected static $type = 4;
-
-    /** @var string Module identifier */
-    protected $id = 'samson_cms_input_select';
+//    /** @var  int Field type identifier */
+//    protected static $type = 4;
+//
+//    /** @var string Module identifier */
+//    protected $id = 'samson_cms_input_select';
 
     /** Special CSS classname for nested field objects to bind JS and CSS */
     protected $cssClass = '__select';
