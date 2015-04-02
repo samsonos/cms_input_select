@@ -6,30 +6,18 @@ use samsoncms\input\Field;
 /**
  * Select SamsonCMS input field
  * @author Vitaly Iegorov<egorov@samsonos.com>
+ * @author Max Omelchenko <omelchenko@samsonos.com>
  */
 class Select extends Field
 {
-//    /** @var  int Field type identifier */
-//    protected static $type = 4;
-//
-//    /** @var string Module identifier */
-//    protected $id = 'samson_cms_input_select';
-
     /** Special CSS classname for nested field objects to bind JS and CSS */
     protected $cssClass = '__select';
 
-    /** Select options */
-    protected $options = '';
+    /** @var array Select options */
+    protected $options = array();
 
-//    /**
-//     * {@inheritdoc}
-//     */
-//    public static function create($dbObject, $type, $param = null, $className = __CLASS__)
-//    {
-//        /** @var self $selectField */
-//        $selectField = parent::create($dbObject, $type, $param, $className);
-//        return $selectField->optionsFromString();
-//    }
+    /** @var string Select options HTML */
+    protected $optionsHTML = '';
 
     /**
      * Parse string into select options
@@ -59,17 +47,33 @@ class Select extends Field
             $this->options[$value] = $view;
         }
 
-        // Transform field value to normal view
-        $this->value = isset($this->options[$this->value]) ? $this->options[$this->value] : $this->value;
-
         // Generate options html
-        $htmlOptions = '';
+        $optionsHTML = '';
         foreach ($this->options as $k => $v) {
-            $htmlOptions .= '<option value="' . $k . '"' .
-                ($v == $this->value ? ' selected' : '') . '>' . $v . '</option>';
+            $optionsHTML .= '<option value="' . $k . '"' .
+                ($v == $this->value() ? ' selected' : '') . '>' . $v . '</option>';
         }
-        $this->options = $htmlOptions;
+        // Save select HTML
+        $this->optionsHTML = $optionsHTML;
 
-        return $this;
+//        // Chaining
+//        return $this;
+    }
+
+    /** {@inheritdoc} */
+    public function value()
+    {
+        // Transform field value to normal view
+        return isset($this->options[$this->value]) ? $this->options[$this->value] : $this->value;
+    }
+
+    /** {@inheritdoc} */
+    public function viewField($renderer)
+    {
+        return $renderer->view($this->fieldView)
+            ->set('value', $this->value())
+            ->set('fieldId', 'field_' . $this->dbObject->id)
+            ->set('options', $this->optionsHTML)
+            ->output();
     }
 }
