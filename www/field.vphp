@@ -1,2 +1,2 @@
-<input type="hidden" class="__hidden" value="<?php v('field_value') ?>">
-<select class="__input" style="display:none; margin: 0px" name="v"><?php v('field_options')?></select>
+<input type="hidden" class="__hidden" value="<?php v('value') ?>">
+<select class="__input" id="<?php iv('fieldId')?>" style="display:none; margin: 0px" name="v"><?php v('options')?></select>
