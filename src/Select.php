@@ -71,9 +71,9 @@ class Select extends Field
     public function viewField($renderer)
     {
         return $renderer->view($this->fieldView)
-            ->set('value', $this->value())
-            ->set('fieldId', 'field_' . $this->dbObject->id)
-            ->set('options', $this->optionsHTML)
+            ->set($this->value(), 'value')
+            ->set('field_' . $this->dbObject->id, 'fieldId')
+            ->set($this->optionsHTML, 'options')
             ->output();
     }
 }
